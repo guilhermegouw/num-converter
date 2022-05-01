@@ -1,4 +1,7 @@
 # Num Converter
+
+[![Coverage Status](./reports/coverage/coverage-badge.svg?dummy=8484744)](./reports/coverage/index.html)
+
 Is a web application that converts integer numbers into English.<br>
 It exposes a GET endpoint:<br>http://127.0.0.1:8000/num_to_english?number=23<br>
  Where number is the number you want to convert to English. <br>
@@ -46,7 +49,7 @@ You can run this command (or install Python 3.10 on your machine)
 ```console
 pipenv --python path/to/python
 ```
-And them continue with the list of commands above starting from
+And then continue with the list of commands above starting from
 ```console
 pipenv install --dev
 ```
