@@ -18,10 +18,10 @@ class NumToEnglish(APIView):
         try:
             english = self.converter.integer_to_english(int(number))
             json_english = {"status": "ok", "number": english}
-        except (ValueError, TypeError):
+        except (ValueError, TypeError, IndexError):
             json_error = {
                 "status": "Error",
-                "message": "Please insert an integer number",
+                "message": "Please insert an integer number between 0-999999999999",
             }
             return Response(json_error, status=status.HTTP_400_BAD_REQUEST)
         return Response(json_english, status=status.HTTP_200_OK)

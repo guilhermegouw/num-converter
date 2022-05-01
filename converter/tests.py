@@ -11,94 +11,94 @@ class ConverterTests(unittest.TestCase):
         self.converter = Converter()
 
     def test_integer_to_word_0(self):
-        self.assertEqual(self.converter.integer_to_word(0), "zero")
+        self.assertEqual(self.converter.integer_to_english(0), "zero")
 
     def test_integer_to_word_1(self):
-        self.assertEqual(self.converter.integer_to_word(1), "one")
+        self.assertEqual(self.converter.integer_to_english(1), "one")
 
     def test_integer_to_word_10(self):
-        self.assertEqual(self.converter.integer_to_word(10), "ten")
+        self.assertEqual(self.converter.integer_to_english(10), "ten")
 
     def test_integer_to_word_15(self):
-        self.assertEqual(self.converter.integer_to_word(15), "fifteen")
+        self.assertEqual(self.converter.integer_to_english(15), "fifteen")
 
     def test_integer_to_word_20(self):
-        self.assertEqual(self.converter.integer_to_word(20), "twenty")
+        self.assertEqual(self.converter.integer_to_english(20), "twenty")
 
     def test_integer_to_word_29(self):
-        self.assertEqual(self.converter.integer_to_word(29), "twenty nine")
+        self.assertEqual(self.converter.integer_to_english(29), "twenty nine")
 
     def test_integer_to_word_50(self):
-        self.assertEqual(self.converter.integer_to_word(50), "fifty")
+        self.assertEqual(self.converter.integer_to_english(50), "fifty")
 
     def test_integer_to_word_59(self):
-        self.assertEqual(self.converter.integer_to_word(59), "fifty nine")
+        self.assertEqual(self.converter.integer_to_english(59), "fifty nine")
 
     def test_integer_to_word_80(self):
-        self.assertEqual(self.converter.integer_to_word(80), "eighty")
+        self.assertEqual(self.converter.integer_to_english(80), "eighty")
 
     def test_integer_to_word_89(self):
-        self.assertEqual(self.converter.integer_to_word(89), "eighty nine")
+        self.assertEqual(self.converter.integer_to_english(89), "eighty nine")
 
     def test_integer_to_word_101(self):
-        self.assertEqual(self.converter.integer_to_word(101), "one hundred one")
+        self.assertEqual(self.converter.integer_to_english(101), "one hundred one")
 
     def test_integer_to_word_151(self):
-        self.assertEqual(self.converter.integer_to_word(151), "one hundred fifty one")
+        self.assertEqual(self.converter.integer_to_english(151), "one hundred fifty one")
 
     def test_integer_to_word_501(self):
-        self.assertEqual(self.converter.integer_to_word(501), "five hundred one")
+        self.assertEqual(self.converter.integer_to_english(501), "five hundred one")
 
     def test_integer_to_word_551(self):
-        self.assertEqual(self.converter.integer_to_word(551), "five hundred fifty one")
+        self.assertEqual(self.converter.integer_to_english(551), "five hundred fifty one")
 
     def test_integer_to_word_1001(self):
-        self.assertEqual(self.converter.integer_to_word(1001), "one thousand one")
+        self.assertEqual(self.converter.integer_to_english(1001), "one thousand one")
 
     def test_integer_to_word_1234(self):
         self.assertEqual(
-            self.converter.integer_to_word(1234), "one thousand two hundred thirty four"
+            self.converter.integer_to_english(1234), "one thousand two hundred thirty four"
         )
 
     def test_integer_to_word_12345(self):
         self.assertEqual(
-            self.converter.integer_to_word(12345),
+            self.converter.integer_to_english(12345),
             "twelve thousand three hundred forty five",
         )
 
     def test_integer_to_word_123456(self):
         self.assertEqual(
-            self.converter.integer_to_word(123456),
+            self.converter.integer_to_english(123456),
             "one hundred twenty three thousand four hundred fifty six",
         )
 
     def test_integer_to_word_1234567(self):
         self.assertEqual(
-            self.converter.integer_to_word(1234567),
+            self.converter.integer_to_english(1234567),
             "one million two hundred thirty four thousand five hundred sixty seven",
         )
 
     def test_integer_to_word_12345678(self):
         self.assertEqual(
-            self.converter.integer_to_word(12345678),
+            self.converter.integer_to_english(12345678),
             "twelve million three hundred forty five thousand six hundred seventy eight",
         )
 
     def test_integer_to_word_123456789(self):
         self.assertEqual(
-            self.converter.integer_to_word(123456789),
+            self.converter.integer_to_english(123456789),
             "one hundred twenty three million four hundred fifty six thousand seven hundred eighty nine",
         )
 
     def test_integer_to_word_1234567890(self):
         self.assertEqual(
-            self.converter.integer_to_word(1234567890),
+            self.converter.integer_to_english(1234567890),
             "one billion two hundred thirty four million five hundred sixty seven thousand eight hundred ninety",
         )
 
     def test_integer_to_word_1234567890123(self):
         self.assertEqual(
-            self.converter.integer_to_word(1234567890123),
+            self.converter.integer_to_english(1234567890123),
             "Sorry... Cannot convert a number greater than 999999999999",
         )
 
@@ -125,7 +125,7 @@ class GETNumToEnglishTests(TestCase):
         response = self.client.get('http://127.0.0.1:8000/num_to_english?number=abc')
         content = response.json()
         self.assertEqual(content['status'], 'Error')
-        self.assertEqual(content['message'], 'Please insert an integer number')
+        self.assertEqual(content['message'], 'Please insert an integer number between 0-999999999999')
 
 
 class POSTNumToEnglishTests(TestCase):
