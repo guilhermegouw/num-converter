@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+python-decouple = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
+drf-yasg = "*"
+
+[dev-packages]
+black = "*"
+coverage = "*"
+genbadge = {extras = ["all"], version = "*"}
+ipdb = "*"
+
+[requires]
+python_version = "3.10"
