@@ -1,6 +1,7 @@
 # Num Converter
 
 [![Coverage Status](./reports/coverage/coverage-badge.svg?dummy=8484744)](./reports/coverage/index.html)
+[![Flake8 Status](./reports/flake8/flake8-badge.svg?dummy=8484744)](./reports/flake8/index.html)
 
 Is a web application that converts a number given to it into the English words that describes that number.<br>
 It exposes a GET endpoint:<br>http://127.0.0.1:8000/num_to_english?number=23<br>
