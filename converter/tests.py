@@ -119,8 +119,10 @@ class GETNumToEnglishTests(TestCase):
     def test_get_valid_query_content(self):
         response = self.client.get("http://127.0.0.1:8000/num_to_english?number=23")
         content = response.json()
-        self.assertEqual(content["status"], "ok")
-        self.assertEqual(content["number"], "twenty three")
+        expected = {"status": "ok", "number": "twenty three"}
+        for field, value in expected.items():
+            with self.subTest():
+                self.assertEqual(content[field], value)
 
     def test_get_invalid_query(self):
         response = self.client.get("http://127.0.0.1:8000/num_to_english?number=abc")
@@ -129,18 +131,24 @@ class GETNumToEnglishTests(TestCase):
     def test_get_invalid_query_content(self):
         response = self.client.get("http://127.0.0.1:8000/num_to_english?number=abc")
         content = response.json()
-        self.assertEqual(content["status"], "Error")
-        self.assertEqual(
-            content["message"], "Please insert an integer number between 0-999999999999"
-        )
+        expected = {
+            "status": "Error",
+            "message": "Please insert an integer number between 0-999999999999",
+        }
+        for field, value in expected.items():
+            with self.subTest():
+                self.assertEqual(content[field], value)
 
     def test_get_invalid_query_negative_number_content(self):
         response = self.client.get("http://127.0.0.1:8000/num_to_english?number=-23")
         content = response.json()
-        self.assertEqual(content["status"], "Error")
-        self.assertEqual(
-            content["message"], "Please insert an integer number between 0-999999999999"
-        )
+        expected = {
+            "status": "Error",
+            "message": "Please insert an integer number between 0-999999999999",
+        }
+        for field, value in expected.items():
+            with self.subTest():
+                self.assertEqual(content[field], value)
 
 
 class POSTNumToEnglishTests(TestCase):
@@ -158,8 +166,10 @@ class POSTNumToEnglishTests(TestCase):
             "http://127.0.0.1:8000/num_to_english/", {"number": "23"}, format="json"
         )
         content = response.json()
-        self.assertEqual(content["status"], "ok")
-        self.assertEqual(content["number"], "twenty three")
+        expected = {"status": "ok", "number": "twenty three"}
+        for field, value in expected.items():
+            with self.subTest():
+                self.assertEqual(content[field], value)
 
     def test_post_invalid_payload(self):
         response = self.client.post(
@@ -172,15 +182,25 @@ class POSTNumToEnglishTests(TestCase):
             "http://127.0.0.1:8000/num_to_english/", {"number": "23abc"}, format="json"
         )
         content = response.json()
-        self.assertEqual(content["status"], "Error")
-        self.assertEqual(content["message"], "This is not a valid payload")
-        self.assertEqual(content["number"], "Should be a string of a number between 0-999999999999")
+        expected = {
+            "status": "Error",
+            "message": "This is not a valid payload",
+            "number": "Should be a string of a number between 0-999999999999",
+        }
+        for field, value in expected.items():
+            with self.subTest():
+                self.assertEqual(content[field], value)
 
     def test_post_invalid_payload_negative_number_content(self):
         response = self.client.post(
             "http://127.0.0.1:8000/num_to_english/", {"number": "-23"}, format="json"
         )
         content = response.json()
-        self.assertEqual(content["status"], "Error")
-        self.assertEqual(content["message"], "This is not a valid payload")
-        self.assertEqual(content["number"], "Should be a string of a number between 0-999999999999")
+        expected = {
+            "status": "Error",
+            "message": "This is not a valid payload",
+            "number": "Should be a string of a number between 0-999999999999",
+        }
+        for field, value in expected.items():
+            with self.subTest():
+                self.assertEqual(content[field], value)
