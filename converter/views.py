@@ -10,7 +10,12 @@ from .utils import Converter
 
 class NumToEnglish(APIView):
     converter = Converter()
-    number_param = openapi.Parameter('number', in_=openapi.IN_QUERY, description='number to be converted to english', type=openapi.TYPE_STRING)
+    number_param = openapi.Parameter(
+        "number",
+        in_=openapi.IN_QUERY,
+        description="number to be converted to english",
+        type=openapi.TYPE_STRING,
+    )
 
     @swagger_auto_schema(manual_parameters=[number_param])
     def get(self, request):
@@ -34,7 +39,7 @@ class NumToEnglish(APIView):
             number = data["number"]
             english = self.converter.integer_to_english(int(number))
             json_english = {"status": "ok", "number": english}
-        except (ValueError, KeyError):
-            json_error = {"status": "Error", "message": "This is not a valid payload"}
+        except (ValueError, KeyError, IndexError):
+            json_error = {"status": "Error", "message": "This is not a valid payload", "number": "Should be a string of a number between 0-999999999999"}
             return Response(json_error, status=status.HTTP_400_BAD_REQUEST)
         return Response(json_english)
